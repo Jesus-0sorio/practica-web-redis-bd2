@@ -1,50 +1,42 @@
 const express = require("express");
-const redis = require("redis");
+const { createClient } = require("redis");
 
-const client = redis.createClient();
+//Conexion a redis
+const client = createClient();
 
 const app = express();
 const port = 3000;
+app.use('/' ,express.static(__dirname + "/static"));
+app.use(express.json())
 
-client.connect();
-
-console.log("Connecting to the Redis");
-
-client.on("ready", () => {
-  console.log("Connected!");
-});
-
-client.on("error", (err) => {
-  console.log("Error in the Connection", err);
-});
-
-app.use(express.json());
-
+//Crea un perfil
 app.post("/addprofile", (req, res) => {
   const { email, name, tel, birth } = req.body;
   client
     .HSET(email, { name, tel, birth })
     .then(() => {
-      res.send(200);
+      res.sendStatus(200);
     })
     .catch((err) => {
       console.log(err);
-      res.send(500);
+      res.sendStatus(500);
     });
 });
 
+//Obtiene un perfil mediante
 app.get("/profile/:email", (req, res) => {
   const email = req.params.email;
   client
     .hGetAll(email)
     .then((result) => {
-      res.status(200).send(result);
+      res.status(200).json({...result});
     })
     .catch((err) => {
       console.log(err);
-      res.status(500);
+      res.status(404).send("Not found");
     });
 });
 
+client.connect();
 app.listen(port);
 console.log(`Servidor en http://localhost:${port}`);

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header>
+      <!-- place navbar here -->
+    </header>
+    <main
+      class="row-fluid d-flex flex-column justify-content-center align-items-center vh-100 bg-light p-5 p-sm-1 p-md-4"
+    >
+      <div class="mb-4">
+        <button type="button" id="findProfile" class="btn btn-primary">
+          Agregar perfil / Buscar perfil
+        </button>
+      </div>
+      <div class="container w-auto border rounded bg-white">
+        <form class="row p-5" id="formProfile">
+          <h3 class="h3 border-bottom pb-2">Add Profile</h3>
+          <div class="mb-3">
+            <label for="" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              id="email"
+              aria-describedby="emailHelpId"
+              placeholder="abc@mail.com"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="name"
+              aria-describedby="helpId"
+              placeholder=""
+            />
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Phone</label>
+            <input
+              type="number"
+              class="form-control"
+              name="tel"
+              id="tel"
+              aria-describedby="helpId"
+              placeholder=""
+            />
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Birth</label>
+            <input
+              type="date"
+              class="form-control"
+              name="birth"
+              id="birth"
+              aria-describedby="helpId"
+              placeholder=""
+            />
+          </div>
+          <button
+            type="button"
+            id="submitForm"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+          >
+            Add
+          </button>
+        </form>
+        <form class="row p-5 d-none" id="formFind">
+          <h3 class="h3 border-bottom pb-2">Find Profile</h3>
+          <div class="mb-3">
+            <label for="" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              id="findEmail"
+              aria-describedby="emailHelpId"
+              placeholder="abc@mail.com"
+            />
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label"
+              >Email</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                readonly
+                class="form-control-plaintext"
+                id="staticEmail"
+                value="email@example.com"
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label"
+              >Name</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                disabled
+                class="form-control-plaintext"
+                id="staticName"
+                value="Name"
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label"
+              >Phone</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="number"
+                readonly
+                class="form-control-plaintext"
+                id="staticPhone"
+                value="1111111"
+              />
+            </div>
+            <div class="mb-3 row">
+              <label for="staticEmail" class="col-sm-2 col-form-label"
+                >Birth</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="date"
+                  readonly
+                  class="form-control-plaintext"
+                  id="staticBirth"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            id="searchForm"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+          >
+            Search
+          </button>
+        </form>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+          <div
+            id="liveToast"
+            class="toast"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            <div class="toast-header">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M4 1h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1m0 8h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1m0 8h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1M9 5h1V3H9v2m0 8h1v-2H9v2m0 8h1v-2H9v2M5 3v2h2V3H5m0 8v2h2v-2H5m0 8v2h2v-2H5Z"
+                />
+              </svg>
+              <strong class="me-auto">Servidor</strong>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="toast"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="toast-body">Perfil creado.</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    <script src="./index.js" type="module"></script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
