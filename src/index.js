@@ -6,12 +6,13 @@ const client = createClient();
 
 const app = express();
 const port = 3000;
-app.use('/' ,express.static(__dirname + "/static"));
-app.use(express.json())
+app.use("/", express.static(__dirname + "/static"));
+app.use(express.json());
 
 //Crea un perfil
 app.post("/addprofile", (req, res) => {
   const { email, name, tel, birth } = req.body;
+
   client
     .HSET(email, { name, tel, birth })
     .then(() => {
@@ -29,7 +30,7 @@ app.get("/profile/:email", (req, res) => {
   client
     .hGetAll(email)
     .then((result) => {
-      res.status(200).json({...result});
+      res.status(200).json({ ...result });
     })
     .catch((err) => {
       console.log(err);
