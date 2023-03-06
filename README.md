@@ -7,4 +7,4 @@ Necesitas tener instalado Redis en tu sistema o como alternativa usar docker:
 docker run -d --name practica-redis -p 6379:6379 redis/redis-stack-server
 ```
 para correr el aplicativo de Nodejs ejecuta:
-###`npm start`
+### `npm start`
