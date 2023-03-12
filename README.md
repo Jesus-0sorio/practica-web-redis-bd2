@@ -10,3 +10,9 @@ Para correr el aplicativo de Nodejs primero instala las dependecias con:
 ### `npm install`
 Despues ejecuta el comando:
 ### `npm start`
+
+## Docker compose
+Pues correr el aplicativo con docker compose, solo necesitas tener instalado docker y ejecutar el siguente comando:
+```shell
+docker compose up
+```
